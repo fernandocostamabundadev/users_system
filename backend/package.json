@@ -1,0 +1,13 @@
+{
+  "name": "api-usuarios",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "Fernando Costa Mabunda",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
