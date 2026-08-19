@@ -49,4 +49,62 @@ model User {
 @@map("users")
 }
 
-//
+//===========================================================
+// 4 modelo post
+//===========================================================
+model post {
+  id String @id  @default(uuid())
+  title String
+  content String
+  userId String @map("user_id")
+  published Boolean @default(false)
+
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  //relacionamento 1:n
+  user user @relation(fields: [userId],refrences: [id])
+
+  //relacionamento n:n
+  comments comment[]
+
+  //indices
+  @@index([userId])
+  @@index([published])
+  @@map("posts")
+}
+
+//===========================================================
+// 5 modelo comment
+//===========================================================
+model comment {
+  id String @id @default(uuid())
+  comment String
+  userId String @map("user_id")
+  postId String @map("post_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId],references:[id])
+  post post @relation(fields: [postId],references:[id])
+
+  @@index([userId])
+  @@index([postId])
+  @@map("comments")
+} 
+
+//=========================================================
+//  modelo de sessao
+//=========================================================
+model Session{
+  id String @id @default(uuid())
+  token String @unique
+  userId String @map("user_id")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId],references:[id])
+
+  @@index([userId])
+  @@index([token])
+  @@map("sessions")
+}
