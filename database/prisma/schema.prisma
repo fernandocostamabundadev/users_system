@@ -1,3 +1,6 @@
+//============================================
+// 1 configurando o gerador do prisma client
+//============================================
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -5,4 +8,20 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+}
+
+//============================================
+// 2 enums
+//============================================
+//===========status da conta==================
+enum userStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+//=============papel do usuário=========================
+enum userRole {
+  USER
+  ADMIN
 }
