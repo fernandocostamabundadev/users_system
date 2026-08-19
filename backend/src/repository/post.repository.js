@@ -220,4 +220,4 @@ class PostRepository {
   }
 }
 
-module.exports = PostRepository;
+module.exports = new PostRepository();
