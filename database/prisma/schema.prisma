@@ -25,3 +25,28 @@ enum userRole {
   USER
   ADMIN
 }
+
+//=======================================================
+// 3 modelo Usuario
+//=======================================================
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String
+  status    userStatus @default(ACTIVE)
+  role      userRole   @default(USER)
+  last_login DateTime? @map("last_login")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+// relacionamentos
+  post Post[]
+  comment comment[]
+
+//indices
+@@index([email])
+@@index([status])
+@@map("users")
+}
+
+//
